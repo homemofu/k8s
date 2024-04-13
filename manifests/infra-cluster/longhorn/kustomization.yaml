@@ -1,0 +1,12 @@
+resources:
+- namespace.yaml
+
+namespace: longhorn-system
+
+helmCharts:
+- name: longhorn
+  releaseName: longhorn
+  version: 1.6.1
+  repo: https://charts.longhorn.io
+  namespace: longhorn-system
+  includeCRDs: true
