@@ -9,5 +9,4 @@ helmCharts:
   includeCRDs: false
   valuesInline:
     connect:
-      applicationName: op-connect
       serviceType: ClusterIP
