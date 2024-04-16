@@ -2,6 +2,7 @@ namespace: cert-manager
 
 resources:
 - namespace.yaml
+- issuer.yaml
 
 helmCharts:
 - name: cert-manager
@@ -10,4 +11,5 @@ helmCharts:
   repo: https://charts.jetstack.io
   namespace: cert-manager
   includeCRDs: true
-
+  valuesInline:
+    installCRDs: true
