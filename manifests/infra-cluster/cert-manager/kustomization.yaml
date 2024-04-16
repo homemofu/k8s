@@ -1,15 +1,11 @@
-namespace: cert-manager
-
-resources:
-- namespace.yaml
-- issuer.yaml
+namespace: kube-system
 
 helmCharts:
 - name: cert-manager
   releaseName: cert-manager
   version: 1.14.4
   repo: https://charts.jetstack.io
-  namespace: cert-manager
+  namespace: kube-system
   includeCRDs: true
   valuesInline:
     installCRDs: true
