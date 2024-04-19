@@ -1,0 +1,71 @@
+namespace: victoria-metrics
+
+resources:
+- namespace.yaml
+
+helmCharts:
+- name: victoria-metrics-operator
+  releaseName: victoria-metrics-operator
+  version: 0.30.1
+  repo: https://victoriametrics.github.io/helm-charts/
+  namespace: victoria-metrics
+  includeCRDs: true
+  valuesInline:
+    createCRD: true
+    cleanupCRD: false
+    replicaCount: 1
+    logLevel: "info"
+    extraLabels: {}
+    podLabels: {}
+    annotations: {}
+    operator:
+      prometheus_converter_add_argocd_ignore_annotations: true
+    resources:
+      limits:
+        cpu: 120m
+        memory: 320Mi
+      requests:
+        cpu: 80m
+        memory: 120Mi
+    nodeSelector: {}
+    tolerations: []
+    affinity: {}
+    extraHostPathMounts:
+    - name: certs-dir
+      mountPath: /etc/kubernetes/certs
+      subPath: ""
+      hostPath: /etc/kubernetes/certs
+      readOnly: true
+    admissionWebhooks:
+      # -- Enables validation webhook.
+      enabled: false
+      enabledCRDValidation:
+        vmagent: true
+        vmalert: true
+        vmsingle: true
+        vmauth: true
+        vmrule: true
+        vmalertmanagerConfig: true
+        vmalertmanager: true
+        vmcluster: true
+        vmuser: true
+      # -- What to do in case, when operator not available to validate request.
+      policy: Fail
+      # -- Enables custom ca bundle, if you are not using cert-manager.
+      # -- in case of custom ca, you have to create secret - {{chart-name}}-validation
+      # -- with keys: tls.key, tls.crt, ca.crt
+      caBundle: ""
+      certManager:
+        # -- Enables cert creation and injection by cert-manager.
+        enabled: true
+        # --If needed, provide own issuer. Operator will create self-signed if empty.
+        issuer: {}
+    # -- configures monitoring with serviceScrape. VMServiceScrape must be pre-installed
+    serviceMonitor:
+      enabled: false
+      extraLabels: {}
+      annotations: {}
+      relabelings: []
+    # -- Add extra specs dynamically to this chart
+    extraObjects: []
+
