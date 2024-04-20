@@ -9,6 +9,11 @@ longhornManager:
       operator: "Exists"
 service:
   ui:
-    type: LoadBalancer
+    type: ClusterIP
   manager:
     type: ClusterIP
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  host: longhorn.mofuwa.net
+
