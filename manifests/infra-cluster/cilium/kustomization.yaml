@@ -6,13 +6,5 @@ helmCharts:
   version: 1.15.2
   repo: https://helm.cilium.io/
   includeCRDs: true
-  valuesInline:
-    tunnel: geneve
-    ipam:
-      mode: cluster-pool
-      operator:
-        clusterPoolIPv4PodCIDRList:
-        - "172.18.0.0/16"
-    hubble:
-      enabled: false
-
+  valuesFile: values.yaml
+  valuesMerge: override
