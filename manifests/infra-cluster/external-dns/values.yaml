@@ -1,6 +1,8 @@
 serviceAccount:
   create: true
 policy: sync
+registry: txt
+txtOwnerId: k8s
 provider:
   name: cloudflare
 sources:
