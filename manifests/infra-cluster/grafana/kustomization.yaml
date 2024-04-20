@@ -1,19 +1,14 @@
 namespace: grafana
 
 resources:
-- namespace.yaml
+  - namespace.yaml
 
 helmCharts:
-- name: grafana
-  releaseName: grafana
-  version: 7.3.9
-  repo: https://grafana.github.io/helm-charts
-  namespace: grafana
-  includeCRDs: true
-  valuesInline:
-    ingress:
-      enabled: true
-      hosts:
-      - grafana.mofuwa.net
-      ingressClassName: nginx
-
+  - name: grafana
+    releaseName: grafana
+    version: 7.3.9
+    repo: https://grafana.github.io/helm-charts
+    namespace: grafana
+    includeCRDs: true
+    valuesFile: values.yaml
+    valuesMerge: override

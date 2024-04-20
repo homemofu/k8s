@@ -1,12 +1,11 @@
 namespace: kube-system
 
 helmCharts:
-- name: connect
-  releaseName: connect
-  version: 1.15.0
-  repo: https://1password.github.io/connect-helm-charts
-  namespace: kube-system
-  includeCRDs: false
-  valuesInline:
-    connect:
-      serviceType: ClusterIP
+  - name: connect
+    releaseName: connect
+    version: 1.15.0
+    repo: https://1password.github.io/connect-helm-charts
+    namespace: kube-system
+    includeCRDs: false
+    valuesFile: values.yaml
+    valuesMerge: override

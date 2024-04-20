@@ -1,27 +1,14 @@
 resources:
-- namespace.yaml
+  - namespace.yaml
 
 namespace: longhorn-system
 
 helmCharts:
-- name: longhorn
-  releaseName: longhorn
-  version: 1.6.1
-  repo: https://charts.longhorn.io
-  namespace: longhorn-system
-  includeCRDs: true
-  valuesInline:
-    preUpgradeChecker:
-      jobEnabled: false
-    longhornManager:
-      # TODO: Add nodeSelector to specify storage nodes only
-      tolerations:
-      - effect: "NoSchedule"
-        operator: "Exists"
-      - effect: "NoExecute"
-        operator: "Exists"
-    service:
-      ui:
-        type: NodePort
-      manager:
-        type: ClusterIP
+  - name: longhorn
+    releaseName: longhorn
+    version: 1.6.1
+    repo: https://charts.longhorn.io
+    namespace: longhorn-system
+    includeCRDs: true
+    valuesFile: values.yaml
+    valuesMerge: override

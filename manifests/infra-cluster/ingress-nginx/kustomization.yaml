@@ -1,19 +1,14 @@
 resources:
-- namespace.yaml
+  - namespace.yaml
 
 namespace: ingress-nginx
 
 helmCharts:
-- name: ingress-nginx
-  releaseName: ingress-nginx
-  version: 4.10.0
-  repo: https://kubernetes.github.io/ingress-nginx
-  namespace: ingress-nginx
-  includeCRDs: true
-  valuesInline:
-    controller:
-      service:
-        type: NodePort
-        nodePorts:
-          http: "31080"
-          https: "31443"
+  - name: ingress-nginx
+    releaseName: ingress-nginx
+    version: 4.10.0
+    repo: https://kubernetes.github.io/ingress-nginx
+    namespace: ingress-nginx
+    includeCRDs: true
+    valuesFile: values.yaml
+    valuesMerge: override

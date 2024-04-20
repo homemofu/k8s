@@ -1,0 +1,14 @@
+preUpgradeChecker:
+  jobEnabled: false
+longhornManager:
+  # TODO: Add nodeSelector to specify storage nodes only
+  tolerations:
+    - effect: "NoSchedule"
+      operator: "Exists"
+    - effect: "NoExecute"
+      operator: "Exists"
+service:
+  ui:
+    type: NodePort
+  manager:
+    type: ClusterIP
