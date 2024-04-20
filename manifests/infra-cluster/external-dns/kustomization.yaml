@@ -1,0 +1,10 @@
+namespace: kube-system
+
+helmCharts:
+  - name: external-dns
+    releaseName: external-dns
+    version: 1.14.4
+    repo: https://kubernetes-sigs.github.io/external-dns/
+    includeCRDs: true
+    valuesFile: values.yaml
+    valuesMerge: override
