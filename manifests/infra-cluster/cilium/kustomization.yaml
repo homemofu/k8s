@@ -1,10 +1,14 @@
 namespace: kube-system
 
+resources:
+  - bgppeeringpolicy.yaml
+  - ciliumloadbalancerippool.yaml
+
 helmCharts:
-- name: cilium
-  releaseName: cilium
-  version: 1.15.2
-  repo: https://helm.cilium.io/
-  includeCRDs: true
-  valuesFile: values.yaml
-  valuesMerge: override
+  - name: cilium
+    releaseName: cilium
+    version: 1.15.2
+    repo: https://helm.cilium.io/
+    includeCRDs: true
+    valuesFile: values.yaml
+    valuesMerge: override

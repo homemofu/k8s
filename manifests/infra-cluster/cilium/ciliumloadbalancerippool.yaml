@@ -1,0 +1,10 @@
+apiVersion: "cilium.io/v2alpha1"
+kind: CiliumLoadBalancerIPPool
+metadata:
+  name: "lb-pool"
+  labels:
+    visibility: "private"
+    ipfamily: "ipv4"
+spec:
+  blocks:
+    - cidr: "10.28.200.0/24"
