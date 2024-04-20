@@ -1,0 +1,12 @@
+namespace: exporters
+
+resources:
+- namespace.yaml
+
+helmCharts:
+- name: kube-state-metrics
+  releaseName: kube-state-metrics
+  version: 5.19.0
+  repo: https://prometheus-community.github.io/helm-charts
+  namespace: exporters
+  includeCRDs: false
