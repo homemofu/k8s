@@ -9,6 +9,6 @@ longhornManager:
       operator: "Exists"
 service:
   ui:
-    type: NodePort
+    type: LoadBalancer
   manager:
     type: ClusterIP
