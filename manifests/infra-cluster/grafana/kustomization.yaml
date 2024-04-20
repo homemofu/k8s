@@ -10,4 +10,10 @@ helmCharts:
   repo: https://grafana.github.io/helm-charts
   namespace: grafana
   includeCRDs: true
+  valuesInline:
+    ingress:
+      enabled: true
+      hosts:
+      - grafana.mofuwa.net
+      ingressClassName: nginx
 
