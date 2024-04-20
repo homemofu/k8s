@@ -1,7 +1,9 @@
+serviceAccount:
+  create: true
+policy: sync
 provider:
   name: cloudflare
 sources:
-  - service
   - ingress
 domainFilters:
   - mofuwa.net
