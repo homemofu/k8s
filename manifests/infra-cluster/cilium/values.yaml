@@ -6,3 +6,5 @@ ipam:
     - "172.18.0.0/16"
 hubble:
   enabled: false
+bgpControlPlane:
+  enabled: true
