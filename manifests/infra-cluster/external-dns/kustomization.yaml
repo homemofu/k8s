@@ -1,5 +1,8 @@
 namespace: kube-system
 
+resources:
+  - secret.yaml
+
 helmCharts:
   - name: external-dns
     releaseName: external-dns
