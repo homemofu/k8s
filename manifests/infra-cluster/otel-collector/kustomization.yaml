@@ -36,23 +36,23 @@ helmCharts:
             receivers: [otlp]
             processors: []
             exporters: [prometheusremotewrite]
-- name: opentelemetry-collector
-  releaseName: otel-collector
-  version: 0.89.0
-  repo: https://open-telemetry.github.io/opentelemetry-helm-charts
-  includeCRDs: false
-  valuesInline:
-    mode: daemonset
-    image:
-      repository: "otel/opentelemetry-collector-contrib"
-    config:
-      exporters:
-        prometheusremotewrite:
-          endpoint: "http://vminsert-main.victoria-metrics.svc.cluster.local:8480/insert/0/prometheus/api/v1/write"
-      service:
-        pipelines:
-          metrics:
-            receivers: [otlp]
-            processors: []
-            exporters: [prometheusremotewrite]
-
+#- name: opentelemetry-collector
+#  releaseName: otel-collector
+#  version: 0.89.0
+#  repo: https://open-telemetry.github.io/opentelemetry-helm-charts
+#  includeCRDs: false
+#  valuesInline:
+#    mode: daemonset
+#    image:
+#      repository: "otel/opentelemetry-collector-contrib"
+#    config:
+#      exporters:
+#        prometheusremotewrite:
+#          endpoint: "http://vminsert-main.victoria-metrics.svc.cluster.local:8480/insert/0/prometheus/api/v1/write"
+#      service:
+#        pipelines:
+#          metrics:
+#            receivers: [otlp]
+#            processors: []
+#            exporters: [prometheusremotewrite]
+#
