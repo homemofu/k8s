@@ -2,6 +2,7 @@ namespace: victoria-metrics
 
 resources:
 - namespace.yaml
+- vmcluster.yaml
 
 helmCharts:
 - name: victoria-metrics-operator
