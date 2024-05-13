@@ -4,6 +4,7 @@ metadata:
   name: argocd-rbac-cm
 data:
   policy.csv: |
+    g, k.musaino@gmail.com, role:admin
     g, argocd-global-admins, role:admin
   policy.default: role:readonly
   # essential to get argo to use groups for RBAC:
