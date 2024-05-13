@@ -4,3 +4,14 @@ metadata:
   name: argocd-cm
 data:
   kustomize.buildOptions: --enable-helm
+  url: https://argocd.mofuwa.net
+  oidc.config: |
+    name: Auth0
+    issuer: $oidc.auth0.issuer
+    clientID: $oidc.auth0.clientID
+    clientSecret: $oidc.auth0.clientSecret
+    requestedScopes:
+    - openid
+    - profile
+    - email
+    - 'http://mofuwa.net/groups'
