@@ -1,0 +1,9 @@
+resources:
+  - ./statefulset.yaml
+
+namespace: palworld
+
+configMapGenerator:
+  - name: palworld-config
+    files:
+      - init-script.sh
