@@ -1,0 +1,71 @@
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: s3-credentials
+  namespace: palworld
+spec:
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: onepassword-store
+  target:
+    template: {}
+  data:
+    - secretKey: AWS_ACCESS_KEY_ID
+      remoteRef:
+        key: OCI-S3-Creds
+        property: accessKey
+    - secretKey: AWS_SECRET_ACCESS_KEY
+      remoteRef:
+        key: OCI-S3-Creds
+        property: secretKey
+    - secretKey: AWS_DEFAULT_REGION
+      remoteRef:
+        key: OCI-S3-Creds
+        property: region
+    - secretKey: AWS_ENDPOINT_URL
+      remoteRef:
+        key: OCI-S3-Creds
+        property: endpoint
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: restic-backup
+  namespace: palworld
+spec:
+  schedule: "0,10,20,30,40,50 * * * *" # UTC
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          nodeSelector:
+            kubernetes.io/hostname: yveltal
+          restartPolicy: Never
+          containers:
+            - name: backup
+              image: restic/restic:0.16.3
+              imagePullPolicy: IfNotPresent
+              command:
+                - sh
+                - /scripts/script.sh
+              envFrom:
+                - secretRef:
+                    name: s3-credentials
+              env:
+                - name: RESTIC_PASSWORD
+                  value: password
+              volumeMounts:
+                - name: restic-script
+                  mountPath: /scripts
+                  readOnly: true
+                - name: source
+                  mountPath: /mnt/source
+          volumes:
+            - name: restic-script
+              configMap:
+                name: restic-script
+            - name: source
+              persistentVolumeClaim:
+                claimName: data-palworld-server-0
