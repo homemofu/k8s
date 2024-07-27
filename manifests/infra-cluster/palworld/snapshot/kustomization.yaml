@@ -1,0 +1,9 @@
+resources:
+  - ./cronjob.yaml
+
+namespace: palworld
+
+configMapGenerator:
+  - name: restic-script
+    files:
+      - script.sh
