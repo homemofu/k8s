@@ -1,6 +1,6 @@
 resources:
   - ./statefulset.yaml
-  - ./backup
+  - ./snapshot
 
 namespace: palworld
 
