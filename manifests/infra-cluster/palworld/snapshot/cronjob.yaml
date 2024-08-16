@@ -56,8 +56,6 @@ spec:
               env:
                 - name: RESTIC_PASSWORD
                   value: password
-                - name: RESTIC_HOST
-                  value: restic-backup
               volumeMounts:
                 - name: restic-script
                   mountPath: /scripts
